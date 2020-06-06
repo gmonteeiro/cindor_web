@@ -20,3 +20,50 @@
 .top-header h1 span{
     color:red;
 }
+
+/* ----- EVENT INFOS ----- */
+
+.card-body{
+    /* background-color: #ececf4; */
+    background-color: #ffffff;
+}
+.event-item{
+    background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px #ececf4;
+}
+
+.event-item .speaker-infos, .event-item .speaker-infos img{
+    width: 100%;
+}
+.event-item .speaker-infos span{
+    position: relative;
+    display: inline-block;
+    background-color: red;
+    font-weight: 900;
+    color: #fff;
+    padding: 10px;
+    width: auto;
+    top: -30px;
+    left: -5px;
+    margin-bottom: -30px;
+}
+.event-infos{
+    color:#9698b6;
+}
+.event-infos h2{
+    text-transform: uppercase;
+    color: #0e1783;
+    font-size: 30px;
+    font-weight: 900;
+}
+.event-infos .finding-infos{
+    font-size: 12px;
+    margin-bottom: 20px;
+    color: red;
+    font-weight: 700;
+}
+.highlight{
+    color: red;
+}
