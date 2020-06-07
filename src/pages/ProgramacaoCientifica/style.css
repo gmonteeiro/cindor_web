@@ -23,6 +23,25 @@
 
 /* ----- EVENT INFOS ----- */
 
+.card-header{
+    color: #0e1783;
+    font-weight: 900;
+    border: none;
+    cursor:pointer;
+}
+.card-header .event-day{
+    display: block;
+    width: auto;
+    float: left;
+    background-color: #0072bc;
+    color: #fff;
+    font-weight: 900;
+    margin: -12px 10px 0px -20px;
+    padding: 11px;
+    border: solid 1px #0072bc;
+    text-transform: uppercase;
+}
+
 .card-body{
     /* background-color: #ececf4; */
     background-color: #ffffff;
@@ -48,6 +67,7 @@
     top: -30px;
     left: -5px;
     margin-bottom: -30px;
+    font-size: 12px;
 }
 .event-infos{
     color:#9698b6;
@@ -63,6 +83,10 @@
     margin-bottom: 20px;
     color: red;
     font-weight: 700;
+}
+.event-infos .finding-infos .evIcon{
+    margin-right: 10px;
+    margin-top:-3px;
 }
 .highlight{
     color: red;

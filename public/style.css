@@ -42,3 +42,24 @@
     display: inline;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 960px) {
+    .menu-header .logo{
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+    }
+    .menu-header .social-medias{
+        display: none;
+    }
+    .menu-header .menu-itens{
+        display: block;
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+    .top-header h1{
+        font-size: 30px !important;
+        margin-top: 120px !important;
+    }
+  }

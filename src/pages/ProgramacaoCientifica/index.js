@@ -6,6 +6,8 @@ import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+import { FaMapMarkerAlt, FaRegClock, FaRegCalendarAlt } from "react-icons/fa";
+
 import api from '../../services/api';
 import noImage from '../../assets/no-image.png';
 import './style.css'; 
@@ -48,14 +50,14 @@ export default function ProgCientifica(){
 
             <Accordion defaultActiveKey="0">
                 {
-                    eventDays.map(day => (
+                    eventDays.map((day, index) => (
                         <Card key={day}>
                             <Card.Header>
-                                <Accordion.Toggle as={Card.Header} variant="link" eventKey={day}>
-                                    {day}
+                                <Accordion.Toggle as={Card.Header} variant="link" eventKey={index}>
+                                    <span className="event-day"> Dia {index+1}</span> {day}
                                 </Accordion.Toggle>
                             </Card.Header>
-                            <Accordion.Collapse eventKey={day}>
+                            <Accordion.Collapse eventKey={index}>
                                 <Card.Body>
                                     {
                                         events.filter(event => event.DataPalestra == day)
@@ -65,20 +67,27 @@ export default function ProgCientifica(){
                                             <div key={event.PalestraId} className="event-item">
 
                                                 <div className="row">
-                                                    <div className="speaker-infos col-sm-3">
+                                                    <div className="speaker-infos col-sm-2">
                                                         <img src={event.PalestranteImgUrl} alt=""/>
                                                         <span>{event.PalestranteNome}</span>
                                                     </div>
 
-                                                    <div className="event-infos col-sm-9">
+                                                    <div className="event-infos col-sm-10">
                                                         <h2>{event.TemaPalestra}</h2>
 
                                                         <div className="finding-infos row">
-                                                            {/* {event.DataPalestra} */}
-                                                            <span className="date col-sm-6 col-md-3"> 
+                                                            <span className="date col-sm-3 col-md-2"> 
+                                                                <FaRegCalendarAlt size={16} color="red" className="evIcon"/>
+                                                                {event.DataPalestra}
+                                                            </span>
+                                                            <span className="date col-sm-4 col-md-3"> 
+                                                                <FaRegClock size={16} color="red" className="evIcon"/>
                                                                 {event.HoraInicioPalestra} - {event.HoraFimPalestra}
                                                             </span>
-                                                            <span className="location col-sm-6">{event.LocalAtividade}</span>
+                                                            <span className="location col-sm-4 col-md-7">
+                                                                <FaMapMarkerAlt size={16} color="red" className="evIcon"/>
+                                                                {event.LocalAtividade}
+                                                            </span>
                                                         </div>
 {/* 
                                                         <strong>Palestrante:</strong>
