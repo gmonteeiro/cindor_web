@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Accordion from 'react-bootstrap/Accordion';
@@ -35,10 +34,9 @@ export default function ProgCientifica(){
         api.get('', { /*headers: { Authorization: eventId }*/ })
             .then(response => {
                 console.log(response);
-                
                 setEvents(response.data);
             })
-    }, ); 
+    }, []); 
     
 
     return(
@@ -60,7 +58,7 @@ export default function ProgCientifica(){
                             <Accordion.Collapse eventKey={index}>
                                 <Card.Body>
                                     {
-                                        events.filter(event => event.DataPalestra == day)
+                                        events.filter(event => event.DataPalestra === day)
                                         .sort((a,b) => a.iniOrder - b.iniOrder)
                                         .map(event => (
                                             
@@ -89,7 +87,7 @@ export default function ProgCientifica(){
                                                                 {event.LocalAtividade}
                                                             </span>
                                                         </div>
-{/* 
+                                                        {/* 
                                                         <strong>Palestrante:</strong>
                                                         <p>{event.PalestranteNome}</p> */}
 
