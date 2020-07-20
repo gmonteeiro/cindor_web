@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Accordion from 'react-bootstrap/Accordion';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab'
 
-import { FaMapMarkerAlt, FaRegClock, FaRegCalendarAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaRegClock } from "react-icons/fa";
 
 import api from '../../services/api';
 import noImage from '../../assets/no-image.png';
@@ -15,7 +13,9 @@ import './style.css';
 export default function ProgCientifica(){
 
 	const eventDays = ["12/12/2020","13/12/2020","14/12/2020","15/12/2020"];
+	const speakerTypes = ["PALESTRANTE", "EQUIPE DE PROFESSORES", "DEBATEDOR"]
 	let [activities , setActivities] = useState([]);
+	let type = "";
 
 
 	useEffect(() => {
@@ -25,8 +25,9 @@ export default function ProgCientifica(){
 
 				let data = response.data.map(a => ({...a, 
 					iniOrder: 
-						a.DataPalestra.substring(0,10)
-						.concat(a.HoraInicioPalestra.substring(11,16))
+						a.DataInicioAtividade.substring(0,10)
+						.concat(a.HoraInicioAtividade.substring(11,16))
+						.concat(a.OrdemPalestra)
 						.replace(/:|-/g, ""),
 					DataPalestra: a.DataPalestra.substring(8,10).concat("/")
 						.concat(a.DataPalestra.substring(5,7)).concat("/")
@@ -56,114 +57,115 @@ export default function ProgCientifica(){
 	}
 
 	return(
-		<div className="event-container">
+		<div className="event-content">
 			<div className="top-header">
-					<h1>Programação <br/> Científica <span>.</span></h1>
-			</div>           
+				<h1>Programação <br/> Científica <span>.</span></h1>
+			</div>  
 
-			<Accordion defaultActiveKey="0">
-				{
-					eventDays.map((day, index) => (
-						<Card key={day}>
-							<Card.Header>
-									<Accordion.Toggle as={Card.Header} variant="link" eventKey={index}>
-											<span className="event-day"> Dia {index+1}</span> {day}
-									</Accordion.Toggle>
-							</Card.Header>
-							<Accordion.Collapse eventKey={index}>
-								<Card.Body>
-									{
-										activities.map(activity => (
-											activity.filter(talk => talk.DataPalestra == day)
-											.sort((a,b) => a.iniOrder - b.iniOrder)
-											.map((talk, index) => (
-												<div key={talk.PalestraId} className="activity-item">
-													
-													{(talk.CategoriaPalestra != "PALESTRANTE" ? (
-														<div className="activity-infos">
-															<span className="activity-title">Atividade: {talk.DescricaoAtividade}</span>
-															<span className="activity-desc">Atividade: {talk.ObsAtividade}</span>
-															<span className="activity-title">Atividade: {talk.CategoriaPalestra}</span>
+			<div className="container event-container">
+				<Tabs>
+					{
+						eventDays.map((day, index) => (
+							<Tab eventKey={index} title={day} >
+								{
+									activities.map(activity => (
+										activity.filter(talk => talk.DataPalestra === day)
+										.sort((a,b) => a.iniOrder - b.iniOrder)
+										.map((talk, idx) => (
+											<div className="row">
+												<div className="col-sm-12">
+													<div key={talk.PalestraId} className="activity-item">
+														<div className="type">
+															{type = ( speakerTypes.includes(talk.CategoriaPalestra) ? ( "talk" ) : ("activity"))}
+														</div>
 															
-															<div className="finding-infos row">
-																<span className="date col-sm-3 col-md-2"> 
-																	<FaRegCalendarAlt size={16} color="red" className="evIcon"/>
-																	{talk.DataInicioAtividade}
-																</span>
-																<span className="date col-sm-4 col-md-3"> 
-																	<FaRegClock size={16} color="red" className="evIcon"/>
-																	{talk.HoraInicioPalestra} - {talk.HoraFimPalestra}
-																</span>
-																<span className="location col-sm-4 col-md-7">
-																	<FaMapMarkerAlt size={16} color="red" className="evIcon"/>
-																	{talk.LocalAtividade}
-																</span>
-															</div>
-														</div>
-													) : (""))}
-											
-													<div key={talk.PalestraId} className="event-item">
-														<div className="row">
-															<div className="speaker-infos">
-																{/* <img src={talk.DescricaoAtividade} alt=""/> */}
-																<span>Palestra {talk.TemaPalestra}</span>
-																<span>Subtema Palestra{talk.SubtemaPalestra}</span>
-															</div>
-														</div>
+															{(idx === 0 ? (
+																<div className="activity-infos row">
+																	<div className="col-sm-12">
+																		<div className="title">{talk.DescricaoAtividade}</div>
+																	</div>
+																	
+																	<div className="location col-sm-12">
+																		<FaMapMarkerAlt size={16} color="red" className="icon"/>
+																		{talk.LocalAtividade}
+																	</div>
+
+																	<div className="date col-sm-12">
+																			<FaRegClock size={15} color="red" className="icon"/>
+																			{talk.HoraInicioAtividade} - {talk.HoraFimAtividade}
+																	</div>
+
+																	<div className="col-sm-12">
+																		<div className="row">
+																			<div className="desc">{talk.ObsAtividade}</div>
+																		</div>
+																		
+																	
+																		<div className={`${type}`}>
+																			<div className="talk-infos col-sm-10 offset-sm-2 col-md-11 offset-md-1">
+																				<div className="dot"></div>
+																				<div className="row">
+																					<div className="date col-sm-3 col-md-2"> 
+																						{talk.HoraInicioPalestra} - {talk.HoraFimPalestra}
+																					</div>
+
+																					<div className="talk-title col-sm-9 col-md-10"> 
+																						{talk.TemaPalestra}
+																					</div>
+																				</div>
+																				
+																				<div className="row">
+																					<div className={`speaker-infos ${(type === "talk" ? ("col-sm-9 col-md-10 offset-sm-3 offset-md-2") : ("col-sm-12"))}`}>
+																						<div className="speaker-img">
+																							<img src={talk.PalestranteImgUrl} alt=""/>
+																						</div>
+																						<div className="speaker-name">{talk.PalestranteNome}</div>
+																						<div className="category">{talk.CategoriaPalestra}</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															) : (
+																<div className={` ${type}`}>
+																	<div className="talk-infos col-sm-10 offset-sm-2 col-md-11 offset-md-1">
+																		<div className="dot"></div>
+																		<div className="row">
+																			<div className="date col-sm-3 col-md-2"> 
+																				{talk.HoraInicioPalestra} - {talk.HoraFimPalestra}
+																			</div>
+
+																			<div className="talk-title col-sm-9 col-md-10"> 
+																				{talk.TemaPalestra}
+																			</div>
+																		</div>
+																		
+																		<div className="row">
+																			<div className={`speaker-infos ${(type === "talk" ? ("col-sm-9 col-md-10 offset-sm-3 offset-md-2") : ("col-sm-12"))}`}>
+																				<div className="speaker-img">
+																					<img src={talk.PalestranteImgUrl} alt=""/>
+																				</div>
+																				<div className="speaker-name">{talk.PalestranteNome}</div>
+																				<div className="category">{talk.CategoriaPalestra}</div>
+																			</div>
+																		</div>
+																		
+
+																	</div>
+																</div>
+															))}
 													</div>
 												</div>
-											))
+											</div>
 										))
-									}
-
-									{
-//                                         events.filter(event => event.DataPalestra == day)
-//                                         .sort((a,b) => a.iniOrder - b.iniOrder)
-//                                         .map(event => (
-													
-//                                             <div key={event.PalestraId} className="event-item">
-
-//                                                 <div className="row">
-//                                                     <div className="speaker-infos col-sm-2">
-//                                                         <img src={event.PalestranteImgUrl} alt=""/>
-//                                                         <span>{event.PalestranteNome}</span>
-//                                                     </div>
-
-//                                                     <div className="event-infos col-sm-10">
-//                                                         <h2>{event.TemaPalestra}</h2>
-
-//                                                         <div className="finding-infos row">
-//                                                             <span className="date col-sm-3 col-md-2"> 
-//                                                                 <FaRegCalendarAlt size={16} color="red" className="evIcon"/>
-//                                                                 {event.DataPalestra}
-//                                                             </span>
-//                                                             <span className="date col-sm-4 col-md-3"> 
-//                                                                 <FaRegClock size={16} color="red" className="evIcon"/>
-//                                                                 {event.HoraInicioPalestra} - {event.HoraFimPalestra}
-//                                                             </span>
-//                                                             <span className="location col-sm-4 col-md-7">
-//                                                                 <FaMapMarkerAlt size={16} color="red" className="evIcon"/>
-//                                                                 {event.LocalAtividade}
-//                                                             </span>
-//                                                         </div>
-// {/* 
-//                                                         <strong>Palestrante:</strong>
-//                                                         <p>{event.PalestranteNome}</p> */}
-
-//                                                         <strong>Informações:</strong>
-//                                                         <p>{event.DescricaoAtividade}</p>
-//                                                     </div>
-//                                                 </div>
-															
-//                                             </div>
-//                                         ))
-									}
-								</Card.Body>
-							</Accordion.Collapse>
-						</Card>
-					))
-				}  
-			</Accordion>
+									))
+								}
+							</Tab>
+						))
+					}  
+				</Tabs>
+			</div>
 		</div>
 	) 
 }

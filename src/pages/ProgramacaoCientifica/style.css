@@ -22,72 +22,131 @@
 }
 
 /* ----- EVENT INFOS ----- */
-
-.card-header{
-    color: #0e1783;
-    font-weight: 900;
-    border: none;
-    cursor:pointer;
-}
-.card-header .event-day{
-    display: block;
-    width: auto;
-    float: left;
-    background-color: #0072bc;
-    color: #fff;
-    font-weight: 900;
-    margin: -12px 10px 0px -20px;
-    padding: 11px;
-    border: solid 1px #0072bc;
-    text-transform: uppercase;
+.event-container{
+    margin-top: 20px;
 }
 
-.card-body{
-    /* background-color: #ececf4; */
-    background-color: #ffffff;
+.title {
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: solid 2px #eee;
+    margin-bottom: 5px;
 }
-.event-item{
-    background-color: #ffffff;
-    padding: 10px;
+
+.speaker-infos {
+    display: inline-block;
+    width: 100%;
     margin-bottom: 10px;
-    border-bottom: solid 1px #ececf4;
+    margin-top: 10px;
 }
-
-.event-item .speaker-infos, .event-item .speaker-infos img{
+.speaker-img {
+    width: 40px;
+    float: left;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.speaker-img img {
     width: 100%;
 }
-.event-item .speaker-infos span{
-    position: relative;
-    display: inline-block;
-    background-color: red;
-    font-weight: 900;
-    color: #fff;
-    padding: 10px;
-    width: auto;
-    top: -30px;
-    left: -5px;
-    margin-bottom: -30px;
+.speaker-name{
+    color: #0072bc;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 2px;
+}
+.category {
+    font-size: 10px;
+    color: #9698b6;
+    font-weight: bold;
+    line-height: 6px;
+}
+
+.activity-infos{
+    margin-top: 10px;
+    padding-top: 10px;
+}
+.activity-infos .location, .activity-infos .date{
     font-size: 12px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
 }
-.event-infos{
-    color:#9698b6;
+.activity-infos .date{
+    margin-bottom: 15px;
 }
-.event-infos h2{
-    text-transform: uppercase;
+.activity-infos .icon{
+    margin-right: 5px;
+}
+.activity-infos .speaker-infos, .activity .talk-infos{
+    background-color: #f7f7f8;
+}
+.activity-infos .talk-infos {
+    padding-top: 10px;
+}
+.activity-infos .talk-infos .speaker-infos{
+    background-color: transparent;
+}
+
+
+.type, .activity .date, .activity .talk-title, .activity .dot{
+    display: none;
+}
+.talk .talk-infos {
+    border-left: solid 1px #eee;
+}
+.talk-infos .dot {
+    width: 15px;
+    height: 15px;
+    background-color: #d30015;
+    border: solid 4px #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: -8px;
+    bottom: 72px;
+}
+.talk-infos .date{
+    font-size: 12px;
+    font-weight: bold;
     color: #0e1783;
-    font-size: 30px;
-    font-weight: 900;
 }
-.event-infos .finding-infos{
-    font-size: 12px;
-    margin-bottom: 20px;
-    color: red;
-    font-weight: 700;
+.talk-infos .talk-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0e1783;
+    line-height: 15px;
 }
-.event-infos .finding-infos .evIcon{
-    margin-right: 10px;
-    margin-top:-3px;
+.talk-infos .date, .talk-infos .talk-title{
+    margin-top: 15px;
 }
-.highlight{
-    color: red;
+
+/* -- TABS STYLE -- */
+.nav-tabs .nav-link{
+    text-align: center;
+    flex: 1;
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #f7f7f8;
+    color: #9698b6;
+    font-weight: bold;
+    font-size: 14px;
+    border-right: solid 2px #fff;
 }
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:focus{
+    color: #fff;
+    font-weight: bold;
+    background-color: #0072bc;
+    border-color: transparent
+}
+.nav-tabs .nav-link:hover{
+    background-color: #f1f1f6;
+}
+.nav-tabs .nav-link.active:hover{
+    background-color: #0072bc;
+    cursor: initial;
+}
+
+/* --  -- */
