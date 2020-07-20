@@ -66,15 +66,15 @@ export default function ProgCientifica(){
 				<Tabs>
 					{
 						eventDays.map((day, index) => (
-							<Tab eventKey={index} title={day} >
+							<Tab eventKey={index} title={day} key={index} >
 								{
 									activities.map(activity => (
 										activity.filter(talk => talk.DataPalestra === day)
 										.sort((a,b) => a.iniOrder - b.iniOrder)
 										.map((talk, idx) => (
-											<div className="row">
+											<div className="row" key={talk.PalestraId}>
 												<div className="col-sm-12">
-													<div key={talk.PalestraId} className="activity-item">
+													<div className="activity-item">
 														<div className="type">
 															{type = ( speakerTypes.includes(talk.CategoriaPalestra) ? ( "talk" ) : ("activity"))}
 														</div>
