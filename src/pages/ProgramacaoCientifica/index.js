@@ -8,6 +8,7 @@ import { FaMapMarkerAlt, FaRegClock } from "react-icons/fa";
 
 import api from '../../services/api';
 import noImage from '../../assets/no-image.png';
+import bgImage from '../../assets/bg-progcientifica.jpg';
 import './style.css'; 
 
 export default function ProgCientifica(){
@@ -59,6 +60,9 @@ export default function ProgCientifica(){
 	return(
 		<div className="event-content">
 			<div className="top-header">
+				<div className="img-container">
+					<img src={bgImage} alt=""/>
+				</div>
 				<h1>Programação <br/> Científica <span>.</span></h1>
 			</div>  
 
