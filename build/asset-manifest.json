@@ -17,10 +17,10 @@
     "static/media/bg-progcientifica.jpg": "/CINDOR20/static/media/bg-progcientifica.31c60f0e.jpg"
   },
   "entrypoints": [
-    "/CINDOR20/static/js/runtime-main.4748f568.js",
-    "/CINDOR20/static/css/2.53823a3d.chunk.css",
-    "/CINDOR20/static/js/2.eaad3622.chunk.js",
-    "/CINDOR20/static/css/main.a354bfdc.chunk.css",
-    "/CINDOR20/static/js/main.f7dd05c6.chunk.js"
+    "static/js/runtime-main.4748f568.js",
+    "static/css/2.53823a3d.chunk.css",
+    "static/js/2.eaad3622.chunk.js",
+    "static/css/main.a354bfdc.chunk.css",
+    "static/js/main.f7dd05c6.chunk.js"
   ]
 }
