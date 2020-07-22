@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "83c6d12b89bb1e581d1c7d4e98525111",
+    "revision": "3422c8031374f0bd3fe734ab61769d0a",
     "url": "/CINDOR20/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CINDOR20/static/css/2.53823a3d.chunk.css"
   },
   {
-    "revision": "569aba151146759ffe8d",
+    "revision": "84cc453b2f68163933d5",
     "url": "/CINDOR20/static/css/main.a354bfdc.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CINDOR20/static/js/2.eaad3622.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "569aba151146759ffe8d",
-    "url": "/CINDOR20/static/js/main.f7dd05c6.chunk.js"
+    "revision": "84cc453b2f68163933d5",
+    "url": "/CINDOR20/static/js/main.296c048b.chunk.js"
   },
   {
     "revision": "eacbba6ea3b1a0edcd89",

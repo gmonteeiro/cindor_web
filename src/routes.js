@@ -11,8 +11,8 @@ export default function Routes(){
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={ ProgCientifica } />
-                <Route path="/progcientifica" component={ ProgCientifica } />
+                <Route path={process.env.PUBLIC_URL + '/'} exact component={ ProgCientifica } />
+                <Route path={process.env.PUBLIC_URL + '/progcientifica'} component={ ProgCientifica } />
             </Switch>
         </BrowserRouter>
     )
