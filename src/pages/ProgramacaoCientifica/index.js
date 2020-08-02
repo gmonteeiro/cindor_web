@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab'
+import Tab from 'react-bootstrap/Tab';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+
 
 import { FaMapMarkerAlt, FaRegClock } from "react-icons/fa";
 
@@ -15,7 +18,26 @@ export default function ProgCientifica(){
 
 	const eventDays = ["12/12/2020","13/12/2020","14/12/2020","15/12/2020"];
 	const speakerTypes = ["PALESTRANTE", "EQUIPE DE PROFESSORES", "DEBATEDOR"]
-	let [activities , setActivities] = useState([]);
+	let [activities, setActivities] = useState([]);
+
+	let [state, setState] = useState({
+		show: false,
+		activeItem:''
+	});
+
+		
+	
+
+  function handleClose() {
+		setState({activeItem:'', show: false });
+	};
+
+	function setData(dt){
+		setState({activeItem:dt, show: true })
+	}
+
+	
+
 	let type = "";
 
 
@@ -24,7 +46,7 @@ export default function ProgCientifica(){
 			.then(response => {
 				console.log(response);
 
-				let data = response.data.map(a => ({...a, 
+				const data = response.data.map(a => ({...a, 
 					iniOrder: 
 						a.DataInicioAtividade.substring(0,10)
 						.concat(a.HoraInicioAtividade.substring(11,16))
@@ -48,13 +70,19 @@ export default function ProgCientifica(){
 
 				setActivities(groupBy( data, 'AtividadeId'));
 			})
+
+			setState({
+				show: false,
+				activeItem:''
+			});
+
 	}, []); 
 
 	function groupBy(data, key) {
-			return data.reduce((acc, x) => {
-				acc[x[key]] = [...(acc[x[key]] || []), x];
-				return acc;
-			}, []);
+		return data.reduce((acc, x) => {
+			acc[x[key]] = [...(acc[x[key]] || []), x];
+			return acc;
+		}, []);
 	}
 
 	return(
@@ -82,6 +110,20 @@ export default function ProgCientifica(){
 														<div className="type">
 															{type = ( speakerTypes.includes(talk.CategoriaPalestra) ? ( "talk" ) : ("activity"))}
 														</div>
+
+														{/* <Button variant="primary" onClick={handleShow({ 
+															nome:talk.PalestranteImgUrl, 
+															img:talk.PalestranteImgUrl, 
+															curriculo:talk.Minicurriculo
+														})}>
+															Launch demo modal
+														</Button> */}
+
+														<button onClick={() => setData(talk)}>
+																<h4>{talk.PalestranteNome}</h4>
+																
+																
+														</button>
 															
 															{(idx === 0 ? (
 																<div className="activity-infos row">
@@ -154,11 +196,12 @@ export default function ProgCientifica(){
 																				<div className="category">{talk.CategoriaPalestra}</div>
 																			</div>
 																		</div>
-																		
-
 																	</div>
 																</div>
 															))}
+
+															
+
 													</div>
 												</div>
 											</div>
@@ -169,6 +212,16 @@ export default function ProgCientifica(){
 						))
 					}  
 				</Tabs>
+				
+				<Modal show={state.show} onHide={handleClose}> 
+					<Modal.Header closeButton>
+							<h3>{state.activeItem.PalestranteNome}</h3>
+					</Modal.Header>
+					<Modal.Body>
+							<p>{state.activeItem.PalestranteImgUrl}</p>
+					</Modal.Body>
+				</Modal>
+
 			</div>
 		</div>
 	) 
