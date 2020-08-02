@@ -4,10 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 
 
-import { FaMapMarkerAlt, FaRegClock } from "react-icons/fa";
+import { FaMapMarkerAlt, FaRegClock, FaRegCalendarAlt } from "react-icons/fa";
 
 import api from '../../services/api';
 import noImage from '../../assets/no-image.png';
@@ -119,11 +118,6 @@ export default function ProgCientifica(){
 															Launch demo modal
 														</Button> */}
 
-														<button onClick={() => setData(talk)}>
-																<h4>{talk.PalestranteNome}</h4>
-																
-																
-														</button>
 															
 															{(idx === 0 ? (
 																<div className="activity-infos row">
@@ -161,7 +155,8 @@ export default function ProgCientifica(){
 																				</div>
 																				
 																				<div className="row">
-																					<div className={`speaker-infos ${(type === "talk" ? ("col-sm-9 col-md-10 offset-sm-3 offset-md-2") : ("col-sm-12"))}`}>
+																					<div onClick={() => setData(talk)} 
+																							 className={`speaker-infos ${(type === "talk" ? ("col-sm-9 col-md-10 offset-sm-3 offset-md-2") : ("col-sm-12"))}`}>
 																						<div className="speaker-img">
 																							<img src={talk.PalestranteImgUrl} alt=""/>
 																						</div>
@@ -188,7 +183,8 @@ export default function ProgCientifica(){
 																		</div>
 																		
 																		<div className="row">
-																			<div className={`speaker-infos ${(type === "talk" ? ("col-sm-9 col-md-10 offset-sm-3 offset-md-2") : ("col-sm-12"))}`}>
+																			<div onClick={() => setData(talk)}
+																					 className={`speaker-infos ${(type === "talk" ? ("col-sm-9 col-md-10 offset-sm-3 offset-md-2") : ("col-sm-12"))}`}>
 																				<div className="speaker-img">
 																					<img src={talk.PalestranteImgUrl} alt=""/>
 																				</div>
@@ -199,9 +195,6 @@ export default function ProgCientifica(){
 																	</div>
 																</div>
 															))}
-
-															
-
 													</div>
 												</div>
 											</div>
@@ -213,12 +206,45 @@ export default function ProgCientifica(){
 					}  
 				</Tabs>
 				
-				<Modal show={state.show} onHide={handleClose}> 
+				<Modal show={state.show} onHide={handleClose} size="lg"> 
 					<Modal.Header closeButton>
-							<h3>{state.activeItem.PalestranteNome}</h3>
+						<div className="row">
+							<div className="col-sm-4">
+								<div className="speaker-img">
+									<img src={state.activeItem.PalestranteImgUrl} alt=""/>
+								</div>
+							</div>
+							<div className="col-sm-8">
+								<h3>{state.activeItem.PalestranteNome}</h3>
+								<p>{state.activeItem.Minicurriculo}</p>
+							</div>
+						</div>
 					</Modal.Header>
 					<Modal.Body>
-							<p>{state.activeItem.PalestranteImgUrl}</p>
+							<h3>PALESTRAS</h3>
+							{
+								activities.map(activity => (
+									activity.filter(talk => talk.PalestranteId === state.activeItem.PalestranteId)
+									.sort((a,b) => a.iniOrder - b.iniOrder)
+									.map((talk) => (
+										<div className="row talk-infos">
+											<div className="col-sm-4">
+												<span className="highlight">
+													<FaRegCalendarAlt size={13} color="#ffffff" className="icon"/>
+													{talk.DataPalestra} - {talk.HoraInicioAtividade} às {talk.HoraFimAtividade} 
+												</span> 
+
+												<p>	<FaMapMarkerAlt size={13} color="#9698b5" className="icon"/>
+												{talk.LocalAtividade} </p>
+											</div>
+
+											<div className="talk-title col-sm-8"> 
+												{talk.TemaPalestra}
+											</div>
+										</div>
+									))
+								))
+							}
 					</Modal.Body>
 				</Modal>
 
