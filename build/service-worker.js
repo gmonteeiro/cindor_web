@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/CINDOR20/precache-manifest.17719bf905fc1ec4d0dd8bb40038dddd.js"
+  "/CINDOR20/precache-manifest.9ed23b80a7b228b139053dd3793c1c81.js"
 );
 
 self.addEventListener('message', (event) => {

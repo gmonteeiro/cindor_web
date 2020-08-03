@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/CINDOR20/static/css/main.af0add25.chunk.css",
+    "main.css": "/CINDOR20/static/css/main.73f91258.chunk.css",
     "main.js": "/CINDOR20/static/js/main.81a4887e.chunk.js",
     "main.js.map": "/CINDOR20/static/js/main.81a4887e.chunk.js.map",
     "runtime-main.js": "/CINDOR20/static/js/runtime-main.4748f568.js",
@@ -9,10 +9,10 @@
     "static/js/2.97782b37.chunk.js": "/CINDOR20/static/js/2.97782b37.chunk.js",
     "static/js/2.97782b37.chunk.js.map": "/CINDOR20/static/js/2.97782b37.chunk.js.map",
     "index.html": "/CINDOR20/index.html",
-    "precache-manifest.17719bf905fc1ec4d0dd8bb40038dddd.js": "/CINDOR20/precache-manifest.17719bf905fc1ec4d0dd8bb40038dddd.js",
+    "precache-manifest.9ed23b80a7b228b139053dd3793c1c81.js": "/CINDOR20/precache-manifest.9ed23b80a7b228b139053dd3793c1c81.js",
     "service-worker.js": "/CINDOR20/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/CINDOR20/static/css/2.af3c1da9.chunk.css.map",
-    "static/css/main.af0add25.chunk.css.map": "/CINDOR20/static/css/main.af0add25.chunk.css.map",
+    "static/css/main.73f91258.chunk.css.map": "/CINDOR20/static/css/main.73f91258.chunk.css.map",
     "static/js/2.97782b37.chunk.js.LICENSE.txt": "/CINDOR20/static/js/2.97782b37.chunk.js.LICENSE.txt",
     "static/media/bg-progcientifica.jpg": "/CINDOR20/static/media/bg-progcientifica.31c60f0e.jpg"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.4748f568.js",
     "static/css/2.af3c1da9.chunk.css",
     "static/js/2.97782b37.chunk.js",
-    "static/css/main.af0add25.chunk.css",
+    "static/css/main.73f91258.chunk.css",
     "static/js/main.81a4887e.chunk.js"
   ]
 }
