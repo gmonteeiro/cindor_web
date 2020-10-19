@@ -82,7 +82,7 @@
     align-items: center;
     display: flex;
 }
-.activity-infos .date{
+.activity-infos .location{
     margin-bottom: 15px;
 }
 .activity-infos .icon{
@@ -128,7 +128,8 @@
     line-height: 15px;
 }
 .talk-infos .date, .talk-infos .talk-title{
-    margin-top: 15px;
+    margin-top: 14px;
+    text-transform: uppercase;
 }
 
 /* -- TABS STYLE -- */
